@@ -1,0 +1,11 @@
+{
+  "name": "xchange-js",
+  "version": "0.0.1",
+  "description": "Interface to access crypto exchange data",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
