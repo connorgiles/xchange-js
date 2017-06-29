@@ -1,10 +1,15 @@
 const xchange = require('./lib/xchange')
 
-var client = new xchange.Poloniex.WebsocketClient();
-var book = {};
+
+var client = new xchange.Bitfinex.WebsocketClient();
+var pairs = ['ETHBTC', 'LTCBTC', 'XRPBTC']
+var markets = [];
+
 client.on('open', () => {
-	market = client.subscribe('BTC_ETH');
+	markets = pairs.map(p => client.subscribe(p));
+	console.log(markets);
 });
 
-
-setInterval(() => console.log(market.bookOfDepth(5)), 2000);
+client.on('change', (market) => {
+	console.log(market.pair, ':', JSON.stringify(market.topOfBook(), null, ' '));
+});
