@@ -2,8 +2,8 @@
 Currently under development. Use at your own risk.
 
 ## Exchange Support
-[X] Bitfinex
-[X] Bitstamp
-[X] Poloniex
-[ ] GDAX
-[ ] Kraken
+- [x] Bitfinex
+- [x] Bitstamp
+- [x] Poloniex
+- [ ] GDAX
+- [ ] Kraken
