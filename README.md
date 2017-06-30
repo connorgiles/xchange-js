@@ -1,6 +1,11 @@
 # xchange-js [![Build Status](https://travis-ci.org/connorgiles/xchange-js.svg?branch=master)](https://travis-ci.org/connorgiles/xchange-js) [![npm version](https://badge.fury.io/js/xchange-js.svg)](https://badge.fury.io/js/xchange-js)
 Currently under development. Use at your own risk.
 
+# Installation
+```
+npm install --save xchange-js
+```
+
 ## Exchange Support
 - [x] Bitfinex
 - [x] Bitstamp
@@ -11,7 +16,7 @@ Currently under development. Use at your own risk.
 ## Websocket Orderbook
 Keep a live orderbook for exchanges that support websockets.
 ```node
-const xchange = require('./lib/xchange');
+const xchange = require('xchange-js');
 const client = new xchange.Bitstamp.WebsocketClient();
 var pairs = ['ETHBTC', 'LTCBTC', 'XRPBTC']
 client.on('open', () => {
@@ -37,7 +42,7 @@ client.on('change', (market) => {
 ### Get Ticker
 Standardized API to get ticker information from exchanges.
 ```node
-const xchange = require('./lib/xchange')
+const xchange = require('xchange-js')
 var client = new xchange.Bitstamp.PublicClient();
 client.ticker('BTCUSD').then(console.log);
 /* Results in
@@ -53,7 +58,7 @@ client.ticker('BTCUSD').then(console.log);
 ### Get Pairs
 Standardized API to get supported pairs from exchanges.
 ```node
-const xchange = require('./lib/xchange')
+const xchange = require('xchange-js')
 var client = new xchange.Bitstamp.PublicClient();
 client.pairs().then(console.log);
 /* Results in
