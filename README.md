@@ -94,8 +94,10 @@ client.trades('BTCUSD').then(console.log);
 ```
 ## TODO
 - ~~Public: Trade API~~
+- ~~Public: Symbols API~~
 - ~~Public: Ticker API~~
 - ~~Websocket: Orderbook~~
+- Add tests
 - Public: Order Book API
 - Private: Account API
 - Private: Trading API
