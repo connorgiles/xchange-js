@@ -4,7 +4,7 @@
   "description": "Interface to access crypto exchange data",
   "main": "index.js",
   "scripts": {
-    "test": "mocha ./test/**/**.js"
+    "test": "mocha ./tests/**/**.js"
   },
   "author": "",
   "license": "ISC",
