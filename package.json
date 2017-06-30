@@ -1,13 +1,13 @@
 {
   "name": "xchange-js",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Interface to access crypto exchange data",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/_mocha --recursive",
     "coverage": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- --recursive -R spec"
   },
-  "author": "",
+  "author": "Connor Giles",
   "license": "ISC",
   "dependencies": {
     "lodash": "^4.17.4",
