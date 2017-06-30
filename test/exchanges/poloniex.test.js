@@ -30,7 +30,7 @@ const testResponses = {
 			low: 0.11354683,
 			bid: 0.11637495,
 			ask: 0.11645000,
-			volume: undefined,
+			volume: 427935.14641021,
 			time: new Date()
 		}
 		
