@@ -1,3 +1,5 @@
+'use strict';
+
 const nock = require('nock');
 const chai = require('chai');
 const poloniex = require('../../lib/exchanges/poloniex');
