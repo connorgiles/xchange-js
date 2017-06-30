@@ -10,7 +10,7 @@ Currently under development. Use at your own risk.
 
 ## Websocket Orderbook
 Keep a live orderbook for exchanges that support websockets.
-```
+```node
 const xchange = require('./lib/xchange')
 
 const client = new xchange.Bitstamp.WebsocketClient();
