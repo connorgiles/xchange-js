@@ -6,6 +6,7 @@ Currently under development. Use at your own risk.
 npm install --save xchange-js
 ```
 
+# Features
 ## Exchange Support
 - [x] Bitfinex
 - [x] Bitstamp
