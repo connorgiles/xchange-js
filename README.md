@@ -82,7 +82,7 @@ var client = new xchange.Bitstamp.PublicClient();
 client.trades('BTCUSD').then(console.log);
 /* Results in
 [ ...
-  { tid: '16852237',
+  { tid: 16852237,
     type: 'ask',
     amount: 0.20240753,
     pair: 'BTCUSD',
