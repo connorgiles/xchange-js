@@ -63,14 +63,14 @@ describe('bitfinex', function () {
 
 		context('success call', function () {
 			it('retrieves ticker data using cb', function (done) {
-				client.getTicker('BTCUSD', function (err, resp) {
+				client.ticker('BTCUSD', function (err, resp) {
 					expect(resp).to.deep.equal(testResponses.ticker.response);
 					done();
 				});
 			});
 
 			it('retrieves ticker using promise', function (done) {
-				client.getTicker('BTCUSD').then((resp) => {
+				client.ticker('BTCUSD').then((resp) => {
 					expect(resp).to.deep.equal(testResponses.ticker.response);
 					done();
 				});
@@ -83,14 +83,14 @@ describe('bitfinex', function () {
 
 		context('success call', function () {
 			it('retrieves pairs data using cb', function (done) {
-				client.getPairs(function (err, resp) {
+				client.pairs(function (err, resp) {
 					expect(resp).to.deep.equal(testResponses.symbols.response);
 					done();
 				});
 			});
 
 			it('retrieves pairs using promise', function (done) {
-				client.getPairs().then((resp) => {
+				client.pairs().then((resp) => {
 					expect(resp).to.deep.equal(testResponses.symbols.response);
 					done();
 				});

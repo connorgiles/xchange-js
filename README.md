@@ -11,7 +11,7 @@ Currently under development. Use at your own risk.
 ## Websocket Orderbook
 Keep a live orderbook for exchanges that support websockets.
 ```node
-const xchange = require('./lib/xchange')
+const xchange = require('./lib/xchange');
 const client = new xchange.Bitstamp.WebsocketClient();
 var pairs = ['ETHBTC', 'LTCBTC', 'XRPBTC']
 client.on('open', () => {
@@ -39,7 +39,7 @@ Standardized API to get ticker information from exchanges.
 ```node
 const xchange = require('./lib/xchange')
 var client = new xchange.Bitstamp.PublicClient();
-client.getTicker('BTCUSD').then(console.log);
+client.ticker('BTCUSD').then(console.log);
 /* Results in
 { last: 2520.42,
   high: 2594.78,
@@ -55,7 +55,7 @@ Standardized API to get supported pairs from exchanges.
 ```node
 const xchange = require('./lib/xchange')
 var client = new xchange.Bitstamp.PublicClient();
-client.getPairs().then(console.log);
+client.pairs().then(console.log);
 /* Results in
 [ 'BTCUSD',
   'BTCEUR',

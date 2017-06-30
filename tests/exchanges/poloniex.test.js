@@ -57,7 +57,7 @@ describe('poloniex', function () {
 
 		context('success call', function () {
 			it('retrieves ticker data using cb', function (done) {
-				client.getTicker('ETHBTC', function (err, resp) {
+				client.ticker('ETHBTC', function (err, resp) {
 					resp.time = testResponses.ticker.response.time;
 					expect(resp).to.deep.equal(testResponses.ticker.response);
 					done();
@@ -65,7 +65,7 @@ describe('poloniex', function () {
 			});
 
 			it('retrieves ticker using promise', function (done) {
-				client.getTicker('ETHBTC').then((resp) => {
+				client.ticker('ETHBTC').then((resp) => {
 					resp.time = testResponses.ticker.response.time;
 					expect(resp).to.deep.equal(testResponses.ticker.response);
 					done();
@@ -79,14 +79,14 @@ describe('poloniex', function () {
 
 		context('success call', function () {
 			it('retrieves pairs data using cb', function (done) {
-				client.getPairs(function (err, resp) {
+				client.pairs(function (err, resp) {
 					expect(resp).to.deep.equal(testResponses.symbols.response);
 					done();
 				});
 			});
 
 			it('retrieves pairs using promise', function (done) {
-				client.getPairs().then((resp) => {
+				client.pairs().then((resp) => {
 					expect(resp).to.deep.equal(testResponses.symbols.response);
 					done();
 				});
