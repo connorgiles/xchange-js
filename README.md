@@ -38,7 +38,7 @@ client.on('change', (market) => {
 Standardized API to get ticker information from exchanges.
 ```node
 const xchange = require('./lib/xchange')
-var client = new xchange.Bitfinex.PublicClient();
+var client = new xchange.Bitstamp.PublicClient();
 client.getTicker('BTCUSD').then(console.log);
 /* Results in
 { last: 2520.42,
@@ -48,5 +48,23 @@ client.getTicker('BTCUSD').then(console.log);
   ask: 2520.27,
   volume: 8991.8225535,
   time: 2017-06-30T08:21:13.000Z }
+ */
+```
+### Get Pairs
+Standardized API to get supported pairs from exchanges.
+```node
+const xchange = require('./lib/xchange')
+var client = new xchange.Bitstamp.PublicClient();
+client.getPairs().then(console.log);
+/* Results in
+[ 'BTCUSD',
+  'BTCEUR',
+  'EURUSD',
+  'XRPUSD',
+  'XRPEUR',
+  'XRPBTC',
+  'LTCUSD',
+  'LTCEUR',
+  'LTCBTC' ]
  */
 ```
