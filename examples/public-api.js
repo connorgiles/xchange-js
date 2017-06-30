@@ -1,6 +1,8 @@
 const xchange = require('../lib/xchange');
 
-var client = new xchange.Bitfinex.PublicClient();
+var client = new xchange.Poloniex.PublicClient();
 
-client.ticker('BTCUSD').then(console.log).catch(console.error);
+client.ticker('ETHBTC').then(console.log).catch(console.error);
+client.trades('NXTBTC').then(console.log).catch(console.error);
+
 client.pairs().then(console.log).catch(console.error);

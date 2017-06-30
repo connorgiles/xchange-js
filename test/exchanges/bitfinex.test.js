@@ -22,11 +22,11 @@ const testResponses = {
 		},
 		response: {
 			last: 244.82,
-			high: null,
-			low: null,
+			high: 248.19,
+			low: 244.2,
 			bid: 244.75,
 			ask: 244.76,
-			volume: null,
+			volume: 7842.11542563,
 			time: new Date(1444253422.348340958*1000)
 		}
 		
@@ -46,7 +46,7 @@ const testResponses = {
 };
 
 nock(rootUrl)
-.get('/ticker/BTCUSD/')
+.get('/pubticker/BTCUSD/')
 .twice()
 .reply(200, testResponses.ticker.body);
 

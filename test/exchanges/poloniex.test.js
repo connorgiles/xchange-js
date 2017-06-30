@@ -30,7 +30,7 @@ const testResponses = {
 			low: 0.11354683,
 			bid: 0.11637495,
 			ask: 0.11645000,
-			volume: null,
+			volume: undefined,
 			time: new Date()
 		}
 		
@@ -43,7 +43,7 @@ const testResponses = {
 };
 
 nock(rootUrl)
-.get('/public')
+.get('')
 .query({command:'returnTicker'})
 .times(4)
 .reply(200, testResponses.ticker.body);
