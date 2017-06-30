@@ -74,3 +74,21 @@ client.pairs().then(console.log);
   'LTCBTC' ]
  */
 ```
+### Get Trades
+Standardized API to get trades from exchanges.
+```node
+const xchange = require('xchange-js')
+var client = new xchange.Bitstamp.PublicClient();
+client.trades('BTCUSD').then(console.log);
+/* Results in
+[ ...
+  { tid: '16852237',
+    type: 'ask',
+    amount: 0.20240753,
+    pair: 'BTCUSD',
+    price: 2516.45,
+    timestamp: 2017-06-30T20:04:27.000Z }
+    ...
+]
+ */
+```
