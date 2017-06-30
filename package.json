@@ -2,7 +2,7 @@
   "name": "xchange-js",
   "version": "0.0.1",
   "description": "Interface to access crypto exchange data",
-  "main": "index.js",
+  "main": "./lib/xchange.js",
   "scripts": {
     "test": "mocha ./tests/**/**.js"
   },
