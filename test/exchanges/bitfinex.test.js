@@ -1,5 +1,3 @@
-'use strict';
-
 const nock = require('nock');
 const chai = require('chai');
 const bitfinex = require('../../lib/exchanges/bitfinex');

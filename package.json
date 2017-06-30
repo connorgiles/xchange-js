@@ -4,7 +4,8 @@
   "description": "Interface to access crypto exchange data",
   "main": "index.js",
   "scripts": {
-    "test": "mocha ./tests/**/**.js"
+    "test": "./node_modules/mocha/bin/_mocha --recursive",
+    "coverage": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- --recursive -R spec"
   },
   "author": "",
   "license": "ISC",
@@ -19,6 +20,8 @@
   },
   "devDependencies": {
     "chai": "^4.0.2",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.4.2",
     "nock": "^9.0.13"
   }
 }

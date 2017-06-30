@@ -1,11 +1,9 @@
-'use strict';
-
 const nock = require('nock');
 const chai = require('chai');
 const bitstamp = require('../../lib/exchanges/bitstamp');
 
 const should = chai.should();
-const expect = chai.expect
+const expect = chai.expect;
 
 const client = new bitstamp.PublicClient();
 const rootUrl = client.publicURI;
