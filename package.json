@@ -4,11 +4,20 @@
   "description": "Interface to access crypto exchange data",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha ./test/**/**.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "request-promise": "^4.2.1"
+    "lodash": "^4.17.4",
+    "path": "^0.12.7",
+    "pusher-js": "^4.1.0",
+    "request-promise": "^4.2.1",
+    "util": "^0.10.3",
+    "ws": "^3.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.0.2",
+    "nock": "^9.0.13"
   }
 }
