@@ -1,4 +1,4 @@
-# xchange-js [![Build Status](https://travis-ci.org/connorgiles/xchange-js.svg?branch=master)](https://travis-ci.org/connorgiles/xchange-js)
+# xchange-js [![Build Status](https://travis-ci.org/connorgiles/xchange-js.svg?branch=master)](https://travis-ci.org/connorgiles/xchange-js) [![npm version](https://badge.fury.io/js/xchange-js.svg)](https://badge.fury.io/js/xchange-js)
 Currently under development. Use at your own risk.
 
 ## Exchange Support
