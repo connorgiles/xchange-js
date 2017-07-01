@@ -1,8 +1,8 @@
 const xchange = require('../lib/xchange')
 
-var client = new xchange.Bitstamp.WebsocketClient();
+var client = new xchange.Poloniex.WebsocketClient();
 
-var pairs = ['BTCUSD']
+var pairs = ['XRPBTC']
 var markets = [];
 
 client.on('open', () => {
@@ -11,5 +11,5 @@ client.on('open', () => {
 
 client.on('change', (market) => {
 	// Get market's full book
-	console.log(market.pair, ':', JSON.stringify(market.book.depth(2), null, ' '));
+	console.log(market.pair, ':', JSON.stringify(market.book.depth(5), null, ' '));
 });
