@@ -8,6 +8,8 @@ const expect = chai.expect
 const client = new bitfinex.PublicClient();
 const rootUrl = client.publicURI;
 
+const testErrMsg = {msg: 'test-error'};
+
 const testResponses = {
 	ticker: {
 		body: {
@@ -51,9 +53,19 @@ nock(rootUrl)
 .reply(200, testResponses.ticker.body);
 
 nock(rootUrl)
+.get('/pubticker/BTCUSD/')
+.twice()
+.replyWithError(testErrMsg);
+
+nock(rootUrl)
 .get('/symbols/')
 .twice()
 .reply(200, testResponses.symbols.body);
+
+nock(rootUrl)
+.get('/symbols/')
+.twice()
+.replyWithError(testErrMsg);
 
 describe('bitfinex', function () {
 
@@ -75,6 +87,22 @@ describe('bitfinex', function () {
 			});
 		});
 
+		context('error call', function () {
+			it('retrieves error using cb', function (done) {
+				client.ticker('BTCUSD', function (err, resp) {
+					expect(err).to.deep.equal(testErrMsg);
+					done();
+				});
+			});
+
+			it('retrieves error promise', function (done) {
+				client.ticker('BTCUSD').then().catch((err) => {
+					expect(err).to.deep.equal(testErrMsg);
+					done();
+				});
+			});
+		});
+
 	});
 
 	describe('pairs', function () {
@@ -90,6 +118,22 @@ describe('bitfinex', function () {
 			it('retrieves pairs using promise', function (done) {
 				client.pairs().then((resp) => {
 					expect(resp).to.deep.equal(testResponses.symbols.response);
+					done();
+				});
+			});
+		});
+
+		context('error call', function () {
+			it('retrieves error using cb', function (done) {
+				client.pairs(function (err, resp) {
+					expect(err).to.deep.equal(testErrMsg);
+					done();
+				});
+			});
+
+			it('retrieves error promise', function (done) {
+				client.pairs().then().catch((err) => {
+					expect(err).to.deep.equal(testErrMsg);
 					done();
 				});
 			});

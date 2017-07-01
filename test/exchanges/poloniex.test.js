@@ -8,6 +8,8 @@ const expect = chai.expect
 const client = new poloniex.PublicClient();
 const rootUrl = client.publicURI;
 
+const testErrMsg = {msg: 'test-error'};
+
 const testResponses = {
 	ticker: {
 		body: {
@@ -45,9 +47,26 @@ const testResponses = {
 nock(rootUrl)
 .get('')
 .query({command:'returnTicker'})
-.times(4)
+.twice()
 .reply(200, testResponses.ticker.body);
 
+nock(rootUrl)
+.get('')
+.query({command:'returnTicker'})
+.twice()
+.replyWithError(testErrMsg);
+
+nock(rootUrl)
+.get('')
+.query({command:'returnTicker'})
+.twice()
+.reply(200, testResponses.ticker.body);
+
+nock(rootUrl)
+.get('')
+.query({command:'returnTicker'})
+.twice()
+.replyWithError(testErrMsg);
 
 describe('poloniex', function () {
 
@@ -71,6 +90,22 @@ describe('poloniex', function () {
 			});
 		});
 
+		context('error call', function () {
+			it('retrieves error using cb', function (done) {
+				client.ticker('ETHBTC', function (err, resp) {
+					expect(err).to.deep.equal(testErrMsg);
+					done();
+				});
+			});
+
+			it('retrieves error promise', function (done) {
+				client.ticker('ETHBTC').then().catch((err) => {
+					expect(err).to.deep.equal(testErrMsg);
+					done();
+				});
+			});
+		});
+
 	});
 
 	describe('pairs', function () {
@@ -86,6 +121,22 @@ describe('poloniex', function () {
 			it('retrieves pairs using promise', function (done) {
 				client.pairs().then((resp) => {
 					expect(resp).to.deep.equal(testResponses.symbols.response);
+					done();
+				});
+			});
+		});
+
+		context('error call', function () {
+			it('retrieves error using cb', function (done) {
+				client.pairs(function (err, resp) {
+					expect(err).to.deep.equal(testErrMsg);
+					done();
+				});
+			});
+
+			it('retrieves error promise', function (done) {
+				client.pairs().then().catch((err) => {
+					expect(err).to.deep.equal(testErrMsg);
 					done();
 				});
 			});

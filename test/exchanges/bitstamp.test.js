@@ -8,6 +8,8 @@ const expect = chai.expect;
 const client = new bitstamp.PublicClient();
 const rootUrl = client.publicURI;
 
+const testErrMsg = {msg: 'test-error'};
+
 const testResponses = {
 	ticker: {
 		body: {
@@ -51,6 +53,11 @@ nock(rootUrl)
 .twice()
 .reply(200, testResponses.ticker.body);
 
+nock(rootUrl)
+.get('/ticker/BTCUSD/')
+.twice()
+.replyWithError(testErrMsg);
+
 describe('bitstamp', function () {
 
 	describe('ticker', function () {
@@ -66,6 +73,22 @@ describe('bitstamp', function () {
 			it('retrieves ticker using promise', function (done) {
 				client.ticker('BTCUSD').then((resp) => {
 					expect(resp).to.deep.equal(testResponses.ticker.response);
+					done();
+				});
+			});
+		});
+
+		context('error call', function () {
+			it('retrieves error using cb', function (done) {
+				client.ticker('BTCUSD', function (err, resp) {
+					expect(err).to.deep.equal(testErrMsg);
+					done();
+				});
+			});
+
+			it('retrieves error promise', function (done) {
+				client.ticker('BTCUSD').then().catch((err) => {
+					expect(err).to.deep.equal(testErrMsg);
 					done();
 				});
 			});
