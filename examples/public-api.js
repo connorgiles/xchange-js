@@ -1,8 +1,8 @@
 const xchange = require('../lib/xchange');
 
-var client = new xchange.Poloniex.PublicClient();
+var client = new xchange.Gdax.PublicClient();
 
-// client.ticker('ETHBTC').then(console.log).catch(console.error);
-client.orderbook('ETHBTC').then(m => console.log(m.topOfBook())).catch(console.error);
+// client.trades('ETHBTC').then(console.log).catch(console.error);
+client.orderbook('ETHBTC').then(m => console.log(m.bookOfDepth(5))).catch(console.error);
 
 // client.pairs().then(console.log).catch(console.error);

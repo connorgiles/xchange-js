@@ -11,7 +11,7 @@ npm install --save xchange-js
 - [x] Bitfinex
 - [x] Bitstamp
 - [x] Poloniex
-- [ ] GDAX
+- [x] GDAX (Partially)
 - [ ] Kraken
 
 ## Websocket Orderbook
