@@ -1,6 +1,8 @@
 const nock = require('nock');
 const chai = require('chai');
 const bitfinex = require('../../lib/exchanges/bitfinex');
+const Market = require('../../lib/market');
+const _ = require('lodash');
 
 const should = chai.should();
 const expect = chai.expect
@@ -44,6 +46,37 @@ const testResponses = {
 		"LTCUSD",
 		"LTCBTC"
 		]
+	},
+	trades: {
+		body: [{
+			"timestamp":1444266681,
+			"tid":11988919,
+			"price":"244.8",
+			"amount":"0.03297384",
+			"exchange":"bitfinex",
+			"type":"sell"
+		}],
+		response: [{ tid: 11988919,
+			type: 'ask',
+			amount: 0.03297384,
+			pair: 'BTCUSD',
+			price: 244.8,
+			timestamp: new Date(1444266681*1000)
+		}]
+	},
+	orderbook: {
+		body: {
+			"bids":[{
+				"price":"574.61",
+				"amount":"0.1439327",
+				"timestamp":"1472506127.0"
+			}],
+			"asks":[{
+				"price":"574.62",
+				"amount":"19.1334",
+				"timestamp":"1472506126.0"
+			}]
+		}
 	}
 };
 
@@ -64,6 +97,32 @@ nock(rootUrl)
 
 nock(rootUrl)
 .get('/symbols/')
+.twice()
+.replyWithError(testErrMsg);
+
+nock(rootUrl)
+.get('/trades/BTCUSD/')
+.times(2)
+.reply(200, testResponses.trades.body);
+
+nock(rootUrl)
+.get('/trades/BTCUSD/')
+.query({timestamp: 1498930804.451})
+.times(2)
+.reply(200, testResponses.trades.body);
+
+nock(rootUrl)
+.get('/trades/BTCUSD/')
+.twice()
+.replyWithError(testErrMsg);
+
+nock(rootUrl)
+.get('/book/BTCUSD/')
+.twice()
+.reply(200, testResponses.orderbook.body);
+
+nock(rootUrl)
+.get('/book/BTCUSD/')
 .twice()
 .replyWithError(testErrMsg);
 
@@ -133,6 +192,104 @@ describe('bitfinex', function () {
 
 			it('retrieves error promise', function (done) {
 				client.pairs().then().catch((err) => {
+					expect(err).to.deep.equal(testErrMsg);
+					done();
+				});
+			});
+		});
+
+	});
+
+	describe('trades', function () {
+
+		context('success call', function () {
+			it('retrieves trade data using cb', function (done) {
+				client.trades('BTCUSD', function (err, resp) {
+					expect(resp).to.deep.equal(testResponses.trades.response);
+					done();
+				});
+			});
+
+			it('retrieves trades using promise', function (done) {
+				client.trades('BTCUSD').then((resp) => {
+					expect(resp).to.deep.equal(testResponses.trades.response);
+					done();
+				});
+			});
+		});
+
+		context('success call with start param', function () {
+			it('retrieves trade data using cb', function (done) {
+				client.trades('BTCUSD', new Date(1498930804451), function (err, resp) {
+					expect(resp).to.deep.equal(testResponses.trades.response);
+					done();
+				});
+			});
+
+			it('retrieves trades using promise', function (done) {
+				client.trades('BTCUSD', new Date(1498930804451)).then((resp) => {
+					expect(resp).to.deep.equal(testResponses.trades.response);
+					done();
+				});
+			});
+		});
+
+		context('error call', function () {
+			it('retrieves error using cb', function (done) {
+				client.trades('BTCUSD', function (err, resp) {
+					expect(err).to.deep.equal(testErrMsg);
+					done();
+				});
+			});
+
+			it('retrieves error promise', function (done) {
+				client.trades('BTCUSD').then().catch((err) => {
+					expect(err).to.deep.equal(testErrMsg);
+					done();
+				});
+			});
+		});
+
+	});
+
+	describe('orderbook', function () {
+
+		let market = new Market('BTCUSD', 'bitfinex');
+		_.forIn(testResponses.orderbook.body, (book, side) => {
+			_.each(book, (pp) => {
+				market.book[side][pp.price] = {
+					price: parseFloat(pp.price),
+					amount: parseFloat(pp.amount)
+				};
+			});
+		});
+
+		context('success call', function () {
+			it('retrieves orderbook using cb', function (done) {
+				client.orderbook('BTCUSD', function (err, resp) {
+					expect(resp).to.deep.equal(market);
+					done();
+				});
+			});
+
+			it('retrieves orderbook using promise', function (done) {
+				client.orderbook('BTCUSD').then((resp) => {
+					expect(resp).to.deep.equal(market);
+					done();
+				});
+			});
+		});
+
+		context('error call', function () {
+			it('retrieves error using cb', function (done) {
+				client.orderbook('BTCUSD', function (err, resp) {
+					expect(err).to.deep.equal(testErrMsg);
+					done();
+				});
+			});
+
+			it('retrieves error promise', function (done) {
+				client.orderbook('BTCUSD').then().catch((err) => {
 					expect(err).to.deep.equal(testErrMsg);
 					done();
 				});
