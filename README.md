@@ -92,6 +92,19 @@ client.trades('BTCUSD').then(console.log);
 ]
  */
 ```
+### Get Orderbook
+Standardized API to get orderbooks from exchanges.
+```node
+const xchange = require('xchange-js');
+var client = new xchange.Poloniex.PublicClient();
+client.orderbook('ETHBTC').then(m => {
+  console.log(m.topOfBook())
+}).catch(console.error);
+/* Results in
+{ bid: { price: 0.11151965, amount: 70.39599912 },
+  ask: { price: 0.11160863, amount: 14.46006716 } }
+*/
+```
 ## TODO
 - ~~Public: Trade API~~
 - ~~Public: Symbols API~~
