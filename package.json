@@ -12,6 +12,7 @@
   "dependencies": {
     "bintrees": "^1.0.1",
     "lodash": "^4.17.4",
+    "object-hash": "^1.1.8",
     "path": "^0.12.7",
     "pusher-js": "^4.1.0",
     "request": "^2.81.0",

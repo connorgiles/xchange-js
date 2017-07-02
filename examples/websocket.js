@@ -2,14 +2,18 @@ const xchange = require('../lib/xchange')
 
 var client = new xchange.Poloniex.WebsocketClient();
 
-var pairs = ['XRPBTC']
-var markets = [];
+var pair = 'ETHBTC';
+var market;
 
 client.on('open', () => {
-	markets = pairs.map(p => client.subscribe(p));
+	market = client.subscribe(pair);
+	market.book.subscribe(1);
+	market.book.on('change', (depth, book) => {
+		console.log(depth);
+		console.log(book);
+	// Get market's full book
+	// console.log(market.pair, ':', JSON.stringify(market.book.depth(5), null, ' '));
 });
 
-client.on('change', (market) => {
-	// Get market's full book
-	console.log(market.pair, ':', JSON.stringify(market.book.depth(5), null, ' '));
 });
+
