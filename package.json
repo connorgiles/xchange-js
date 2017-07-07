@@ -5,13 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/_mocha --recursive",
-    "coverage": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- --recursive -R spec"
+    "coverage": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- --recursive -R spec",
+    "lint": "./node_modules/.bin/eslint lib/**"
   },
   "author": "Connor Giles",
   "license": "ISC",
   "dependencies": {
     "bintrees": "^1.0.1",
     "lodash": "^4.17.4",
+    "mongoose": "^4.11.1",
     "object-hash": "^1.1.8",
     "path": "^0.12.7",
     "pusher-js": "^4.1.0",
@@ -22,6 +24,11 @@
   },
   "devDependencies": {
     "chai": "^4.0.2",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^15.0.2",
+    "eslint-plugin-import": "^2.6.1",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.1.0",
     "istanbul": "^0.4.5",
     "mocha": "^3.4.2",
     "nock": "^9.0.13"
