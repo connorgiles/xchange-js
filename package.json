@@ -1,6 +1,6 @@
 {
   "name": "xchange-js",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Interface to access crypto exchange data",
   "main": "index.js",
   "scripts": {
