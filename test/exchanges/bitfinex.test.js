@@ -257,24 +257,21 @@ describe('bitfinex', function () {
 		let market = new Market('BTCUSD', 'bitfinex');
 		_.forIn(testResponses.orderbook.body, (book, side) => {
 			_.each(book, (pp) => {
-				market.book[side][pp.price] = {
-					price: parseFloat(pp.price),
-					amount: parseFloat(pp.amount)
-				};
+				market.book.add(bitfinex.adapters.publicPriceLevel(pp, side));
 			});
 		});
 
 		context('success call', function () {
 			it('retrieves orderbook using cb', function (done) {
 				client.orderbook('BTCUSD', function (err, resp) {
-					expect(resp).to.deep.equal(market);
+					expect(resp.book.depth()).to.deep.equal(market.book.depth());
 					done();
 				});
 			});
 
 			it('retrieves orderbook using promise', function (done) {
 				client.orderbook('BTCUSD').then((resp) => {
-					expect(resp).to.deep.equal(market);
+					expect(resp.book.depth()).to.deep.equal(market.book.depth());
 					done();
 				});
 			});

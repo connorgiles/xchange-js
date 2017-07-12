@@ -224,10 +224,7 @@ describe('bitstamp', function () {
 		_.forIn(testResponses.orderbook.body, (book, side) => {
 			if (side === 'asks' || side === 'bids') {
 				_.each(book, (pp) => {
-					market.book[side][pp[0]] = {
-						price: parseFloat(pp[0]),
-						amount: parseFloat(pp[1])
-					};
+					market.book.add(bitstamp.adapters.publicPriceLevel(pp, side));
 				});
 			}
 		});
@@ -235,14 +232,14 @@ describe('bitstamp', function () {
 		context('success call', function () {
 			it('retrieves orderbook using cb', function (done) {
 				client.orderbook('BTCUSD', function (err, resp) {
-					expect(resp).to.deep.equal(market);
+					expect(resp.book.depth()).to.deep.equal(market.book.depth());
 					done();
 				});
 			});
 
 			it('retrieves orderbook using promise', function (done) {
 				client.orderbook('BTCUSD').then((resp) => {
-					expect(resp).to.deep.equal(market);
+					expect(resp.book.depth()).to.deep.equal(market.book.depth());
 					done();
 				});
 			});
