@@ -1,6 +1,6 @@
 {
   "name": "xchange-js",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Interface to access crypto exchange data",
   "main": "index.js",
   "scripts": {
@@ -8,8 +8,12 @@
     "coverage": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- --recursive -R spec",
     "lint": "./node_modules/.bin/eslint lib/**"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/connorgiles/xchange-js"
+  },
   "author": "Connor Giles",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "bintrees": "^1.0.1",
     "lodash": "^4.17.4",
