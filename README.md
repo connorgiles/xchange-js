@@ -6,7 +6,7 @@ Currently under development. Use at your own risk.
 npm install --save xchange-js
 ```
 
-# [Wiki](./wiki)
+# [Wiki](https://github.com/connorgiles/xchange-js/wiki)
 Documentation and instructions under project wiki.
 
 # TODO
