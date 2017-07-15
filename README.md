@@ -1,6 +1,8 @@
 # xchange-js [![Build Status](https://travis-ci.org/connorgiles/xchange-js.svg?branch=master)](https://travis-ci.org/connorgiles/xchange-js) [![npm version](https://badge.fury.io/js/xchange-js.svg)](https://badge.fury.io/js/xchange-js)
 Currently under development. Use at your own risk.
 
+A basic node library providing a simple and consistent API to interact with various cryptocurrency exchanges. Provides support for both REST and Websocket APIs.
+
 # Installation
 ```
 npm install --save xchange-js
