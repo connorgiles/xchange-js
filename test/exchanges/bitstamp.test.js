@@ -34,7 +34,7 @@ const testResponses = {
 			volume: 3300.97957797,
 			time: new Date(1492456833*1000)
 		}
-		
+
 	},
 	symbols: {
 		body: [

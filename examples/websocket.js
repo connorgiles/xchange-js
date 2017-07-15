@@ -12,8 +12,6 @@ client.on('open', () => {
 	market.book.on('change', (depth, book) => {
 		console.log(book);
 	});
-
-
 });
 
 

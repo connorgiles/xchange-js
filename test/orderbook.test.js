@@ -28,10 +28,10 @@ describe('orderbook', function () {
 	context('success change state', function () {
 		let state = {
 			bids: [
-				new Order('1234', 1.23, 2000, 'bid', new Date())
+			new Order('1234', 1.23, 2000, 'bid', new Date())
 			],
 			asks: [
-				new Order('1235', 1.23, 2001, 'ask', new Date())
+			new Order('1235', 1.23, 2001, 'ask', new Date())
 			]
 		};
 		it('reflects new state', function (done) {
